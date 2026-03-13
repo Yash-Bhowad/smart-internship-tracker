@@ -30,7 +30,7 @@ function loadApplications() {
 }
 
 function displayApplications() {
-    const list = document.getElementById("applicationList");
+    const list = document.getElementById("applicationsList");
     list.innerHTML = "";
 
     let applications = JSON.parse(localStorage.getItem("applications")) || [];
