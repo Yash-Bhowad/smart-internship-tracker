@@ -1,11 +1,14 @@
-document.addEventListener("DOMContentLoaded", loadApplications);
+const form = document.getElementById("internshipForm");
+const list = document.getElementById("applicationsList");
+
+let applications = JSON.parse(localStorage.getItem("apps")) || [];
 
 function addApplication() {
-    const company = document.getElementById("company").value;
-    const role = document.getElementById("role").value;
-    const status = document.getElementById("status").value;
+const company=document.getElementById("company").value;
+const role=document.getElementById("role").value;
+const status=document.getElementById("status").value;
 
-    if(company === "" || role === "") {
+ if(company === "" || role === "") {
         alert("Please fill all fields");
         return;
     }
@@ -17,30 +20,31 @@ function addApplication() {
         date: new Date().toLocaleDateString()
     };
 
-    let applications = JSON.parse(localStorage.getItem("applications")) || [];
-    applications.push(application);
+ applications.push(application);
 
-    localStorage.setItem("applications", JSON.stringify(applications));
+localStorage.setItem("apps",JSON.stringify(applications));
 
-    displayApplications();
+displayApps();
+
+form.reset();
+
 }
 
 function loadApplications() {
-    displayApplications();
+    displayApps();
 }
 
-function displayApplications() {
-    const list = document.getElementById("applicationsList");
-    list.innerHTML = "";
+function displayApps(){
 
-    let applications = JSON.parse(localStorage.getItem("applications")) || [];
+list.innerHTML="";
 
-    applications.forEach((app, index) => {
-        const card = document.createElement("div");
+applications.forEach((app,index)=>{
 
-        card.className = "card";
+const card=document.createElement("div");
 
-        card.innerHTML = `
+card.className="card";
+
+card.innerHTML = `
             <h3>${app.company}</h3>
             <p><strong>Role:</strong> ${app.role}</p>
             <p><strong>Status:</strong> ${app.status}</p>
@@ -48,13 +52,21 @@ function displayApplications() {
             <button onclick="deleteApplication(${index})">Delete</button>
         `;
 
-        list.appendChild(card);
-    });
+
+list.appendChild(card);
+
+});
+
 }
 
-function deleteApplication(index) {
-    let applications = JSON.parse(localStorage.getItem("applications")) || [];
-    applications.splice(index, 1);
-    localStorage.setItem("applications", JSON.stringify(applications));
-    displayApplications();
+function deleteApplication(index){
+
+applications.splice(index,1);
+
+localStorage.setItem("apps",JSON.stringify(applications));
+
+displayApps();
+
 }
+
+loadApplications();
