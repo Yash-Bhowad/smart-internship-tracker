@@ -19,8 +19,13 @@ A simple and user-friendly web application to track internship applications and 
 
 ## 📸 Screenshots
 
-![Home](screenshots/home.png)  
-![Add](screenshots/add.png)  
+### 🏠 Home Page
+![Home](screenshots/home.png)
+
+### ➕ Add Internship
+![Add](screenshots/add.png)
+
+### 📋 Application List
 ![View](screenshots/view.png)
 
 ## 📂 How to Run Locally
